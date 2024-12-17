@@ -1,69 +1,63 @@
 # České Dráhy Ticket Price Scraper
 
-Tento Python skript automaticky sbírá informace o cenách jízdenek, datu, čase a úrovni obsazenosti vlakových spojení od Českých drah z webu [cd.cz/spojeni-a-jizdenka](https://www.cd.cz/spojeni-a-jizdenka/). Výstup je uložen ve formátu CSV.
+This Python script automatically collects information about ticket prices, dates, times, and occupancy levels for train connections operated by České dráhy from the website [cd.cz/spojeni-a-jizdenka](https://www.cd.cz/spojeni-a-jizdenka/). The output is saved in CSV format.
 
-## Požadavky
+## Requirements
 
-- Python 3.8 nebo novější
-- Nainstalovaný [Google Chrome](https://www.google.com/chrome/) a [ChromeDriver](https://chromedriver.chromium.org/downloads)
-- Nainstalované Python balíčky:
-  - `selenium`
-  - `validators`
+- Python 3.8 or later
+- Installed [Google Chrome](https://www.google.com/chrome/) and [ChromeDriver](https://chromedriver.chromium.org/downloads)
+- Dependencies listed in the `requirements.txt` file
 
-Instalace závislostí:
+Install dependencies using:
 ```bash
-pip install selenium validators
+pip install -r requirements.txt
 ```
 
-## Použití
+## Usage
 
-Skript je spuštěn přes příkazovou řádku s následujícími parametry:
+The script is executed via the command line with the following parameters:
 
 ```bash
 python cd_scraper4.py <from_station> <to_station> <output_file.csv> <number_of_pages>
 ```
 
-### Parametry:
-- `from_station` – Výchozí stanice (např. "Praha hl.n.").
-- `to_station` – Cílová stanice (např. "Brno hl.n.").
-- `output_file.csv` – Název výstupního souboru ve formátu `.csv` (např. "results.csv").
-- `number_of_pages` – Počet stránek výsledků k procházení (každá stránka obsahuje 5 spojení).
+### Parameters:
+- `from_station` – Departure station (e.g., "Praha hl.n.").
+- `to_station` – Destination station (e.g., "Brno hl.n.").
+- `output_file.csv` – The name of the output file in `.csv` format (e.g., "results.csv").
+- `number_of_pages` – The number of pages of results to scrape (each page contains 5 connections).
 
-### Příklad:
+### Example:
 ```bash
 python cd_scraper4.py "Praha hl.n." "Brno hl.n." results.csv 10
 ```
 
-## Hlavní funkce
+## Key Features
 
-- **Validace vstupních dat**: Kontroluje, zda výstupní soubor končí na `.csv`.
-- **Automatizace pomocí Selenium WebDriver**:
-  - Přijímání cookies.
-  - Vyplnění vstupních polí pro stanice.
-  - Posun času, aby výsledky zahrnovaly budoucí spoje.
-  - Omezení výsledků pouze na vlaky Českých drah.
-- **Scrapování dat**:
-  - Datum a čas spoje.
-  - Cena jízdenky.
-  - Úroveň obsazenosti.
-- **Export do CSV**: Ukládá data do uživatelem definovaného souboru.
+- **Input Validation**: Ensures the output file ends with `.csv`.
+- **Automation with Selenium WebDriver**:
+  - Accepting cookies.
+  - Filling in departure and destination stations.
+  - Adjusting the time to ensure future connections are included.
+  - Filtering results to show only trains operated by České dráhy.
+- **Data Scraping**:
+  - Train departure dates and times.
+  - Ticket prices.
+  - Occupancy levels.
+- **CSV Export**: Saves the collected data to the user-specified file.
 
-## Omezení
+## Limitations
 
-- Stránka může změnit strukturu nebo XPath prvků, což může způsobit nefunkčnost skriptu.
-- Skript předpokládá, že je ChromeDriver kompatibilní s verzí Google Chrome.
+- The website may change its structure or XPath elements, which can break the script.
+- The script assumes ChromeDriver is compatible with the installed version of Google Chrome.
 
 ## Debugging
 
-V případě problémů:
-- Zkontrolujte kompatibilitu verzí ChromeDriver a Google Chrome.
-- Ujistěte se, že jsou nainstalované všechny požadované knihovny.
-- Použijte příkaz `--help` pro získání nápovědy:
+In case of issues:
+- Check compatibility between ChromeDriver and Google Chrome versions.
+- Ensure all required libraries are installed.
+- Use the `--help` command for guidance:
 
 ```bash
 python cd_scraper4.py --help
 ```
-
-## Licenční ujednání
-
-Tento projekt je poskytován pod licencí MIT. Více informací v přiloženém souboru `LICENSE`.
