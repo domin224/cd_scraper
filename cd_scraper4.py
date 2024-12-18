@@ -8,10 +8,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 import time
 
-def is_url_valid(url):
-    """Check if the provided URL is in a valid format."""
-    return validators.url(url)
-
 def get_arguments():
     """Parse and validate command-line arguments for the scraper."""
     parser = argparse.ArgumentParser(description="Ceske drahy ticket price scraper")
